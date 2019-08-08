@@ -1,6 +1,8 @@
 # JavaScriptParticles
 Simple but great looking JavaScript particles
 
+[Demo](https://jq-it.de/portfolio-demos/particles/demo.html)
+
 ## How to use:
 - Add a container 
   ```html
@@ -44,7 +46,7 @@ var particleSettings = {
 
 **maxSize**: Max. particle size.
 
-**maxSpeed**: Max. particle speed.
+**maxSpeed**: Max. particle speed
 
 **lineThikness**: Thikness of connecting lines.
 
