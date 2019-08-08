@@ -11,40 +11,42 @@ window.particles = {
     init: function (settings) { 
         window.particles.settings = settings;
 
-        $(document).ready(function(){
-            window.particles.width = $('#particles').innerWidth();
-            window.particles.height = $('#particles').innerHeight();
+        window.particles.width = document.getElementById('particles').offsetWidth;
+        window.particles.height = document.getElementById('particles').offsetHeight;
+    
+        window.particles.initParticles();
+        if(window.scrollY < window.particles.height) window.particles.start();
         
+        window.addEventListener('resize', function() {
+            window.particles.width = document.getElementById('particles').offsetWidth;
+            window.particles.height = document.getElementById('particles').offsetHeight;
             window.particles.initParticles();
-            if($(window).scrollTop() < window.particles.height) window.particles.start();
-            
-            $(window).on('resize', function() {
-                window.particles.width = $('#particles').innerWidth();
-                window.particles.height = $('#particles').innerHeight();
-                window.particles.initParticles();
-                if($(window).scrollTop() < window.particles.height) window.particles.start();
-            });
-        
-            $(window).on('scroll', function() {
-                if($(window).scrollTop() > window.particles.height && window.particles.running){
-                    window.particles.stop();
-                }
-                if($(window).scrollTop() < window.particles.height && !window.particles.running){
-                    window.particles.start();
-                }
-            });
+            if(window.scrollY < window.particles.height) window.particles.start();
+        });
+    
+        window.addEventListener("scroll", function() {
+            if(window.scrollY > window.particles.height && window.particles.running){
+                window.particles.stop();
+            }
+            if(window.scrollY < window.particles.height && !window.particles.running){
+                window.particles.start();
+            }
         });
     },
 
     initParticles: function() {
         let html = '<canvas id="particles-canvas" width="' + window.particles.width + '" height="' + window.particles.height + '"></canvas>'
         
-        $('#particles').css('background-color', 'rgb(' + window.particles.settings.backgroundColor.r +
+        document.getElementById('particles').style.backgroundColor = 'rgb(' + window.particles.settings.backgroundColor.r +
                                                     ', ' + window.particles.settings.backgroundColor.g + 
-                                                    ', ' + window.particles.settings.backgroundColor.b + ')');
+                                                    ', ' + window.particles.settings.backgroundColor.b + ')';
     
-        $('#particles-canvas').remove();
-        $('#particles').append(html);
+        var canvas = document.getElementById("particles-canvas");
+        if(canvas){
+            canvas.parentNode.removeChild(canvas);
+        }                                     
+        document.getElementById("particles").insertAdjacentHTML( 'beforeend', html );
+
         window.particles.canvas = document.getElementById("particles-canvas");
         window.particles.ctx = window.particles.canvas.getContext("2d");
     
@@ -156,7 +158,7 @@ window.particles = {
 
     drawParticles: function(){
         window.particles.ctx.clearRect(0, 0, window.particles.canvas.width, window.particles.canvas.height);
-        window.particles.ctx.lineWidth  = window.particles.settings.lineThinkness;
+        window.particles.ctx.lineWidth  = window.particles.settings.lineThikness;
     
         for(var particle of window.particles.particles){
             let opacity = (particle.z / window.particles.settings.z).toFixed(5);
