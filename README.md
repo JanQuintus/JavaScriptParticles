@@ -54,4 +54,22 @@ var particleSettings = {
   - 'wh': by the width and height of the screen.
   - 'number': as the number set in **z**
   
-**z**: 
+**z**: deepness if zMode is set to 'number'
+
+**fadeOut**: If true, the particles will fade out around the edges of the container. This gives a vignette effect.
+
+**fadeOutStrength**: Strength of fadeout.
+
+**fadeOutAffectsSize**: If true, the particles will shrink towards the edges. This gives a spherical look.
+
+**connectionBox**: Boxsize to detect other particles around.
+
+**backgroundColor**: Backgroundcolor of the canvas.
+
+**particleColor**: Particle color.
+
+**particleColorBoost**: Added to the particles color to control thire transparency.
+
+**plongLifeTime**: If a particle reaches the "backside" of the screen it creates a "plong" effect which means it bounces of the screen back into the darkness. If this is set to 0 the effect will be gone.
+
+**plongSize**: The size of the ripple effect.
